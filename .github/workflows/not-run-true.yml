@@ -1,17 +1,33 @@
- on:
-   workflow_run:
-     workflows: ["Test exiting on failure"]
-     types: [completed] #requested
+on:
+  workflow_run:
+    workflows:
+      - "Test exiting on failure"
+    branches:
+      - main
+    types:
+      - completed
 
- jobs:
-   on-success:
-     runs-on: ubuntu-latest
-     if: ${{ github.event.workflow_run.conclusion == 'success' }}
-     steps:
-       - run: echo "First workflow was a success"
+jobs:
+  on-success:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    steps:
+      - run: echo "First workflow was a success"
 
-   on-failure:
-     runs-on: ubuntu-latest
-     if: ${{ github.event.workflow_run.conclusion == 'failure' }}
-     steps:
-       - run: echo "First workflow was a failure"
+  on-success2:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    steps:
+      - run: echo "First workflow was a success2"
+
+  on-failure:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'failure' }}
+    steps:
+      - run: echo "First workflow was a failure"
+
+  on-failure2:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'failure' }}
+    steps:
+      - run: echo "First workflow was a failure2"
