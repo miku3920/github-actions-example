@@ -16,6 +16,9 @@ jobs:
       - name: Run a one-line script
         run: echo test!
 
+      - name: Try to fail
+        run: exit 1
+
   deploy:
     name: deploy
     needs: test
